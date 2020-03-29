@@ -1,0 +1,87 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>${rootArtifactId}-dist</artifactId>
+  <packaging>pom</packaging>
+
+  <name>${symbol_dollar}{project.groupId}:${symbol_dollar}{project.artifactId}</name>
+
+  <parent>
+    <groupId>${groupId}</groupId>
+    <artifactId>${rootArtifactId}-parent</artifactId>
+    <version>${version}</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>${groupId}</groupId>
+      <artifactId>${rootArtifactId}-example</artifactId>
+      <version>${version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${symbol_dollar}{maven-assembly-plugin.version}</version>
+
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+
+        <!-- Example Application -->
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/assembly/jar-with-dependencies-app.xml</descriptor>
+              </descriptors>
+              <!--
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              -->
+              <archive>
+                <manifest>
+                  <mainClass>${groupId}.application.App</mainClass>
+                </manifest>
+              </archive>
+              <appendAssemblyId>false</appendAssemblyId>
+              <finalName>${rootArtifactId}-example-${project.version}</finalName>
+            </configuration>
+          </execution>
+
+          <!-- Library -->
+          <execution>
+            <id>bin</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/assembly/jar-with-dependencies-lib.xml</descriptor>
+              </descriptors>
+              <appendAssemblyId>false</appendAssemblyId>
+              <finalName>${rootArtifactId}-${project.version}-dist</finalName>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

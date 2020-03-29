@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+  name="multi-module-project-base-maven-archetype">
+
+  <requiredProperties>
+    <requiredProperty key="groupId">
+      <defaultValue>${groupId}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="package">
+      <defaultValue>${groupId.replaceAll("-", "_")}</defaultValue>
+    </requiredProperty>
+    <requiredProperty key="developerName" />
+    <requiredProperty key="developerEmail" />
+    <requiredProperty key="developerUrl" />
+    <requiredProperty key="scmConnection" />
+    <requiredProperty key="scmUrl" />
+    <requiredProperty key="scmTag">
+      <defaultValue>HEAD</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
+  <!-- parent module -->
+  <fileSets>
+    <fileSet filtered="true" packaged="false" encoding="UTF-8">
+      <directory />
+      <includes>
+        <include>pom.xml</include>
+      </includes>
+    </fileSet>
+  
+    <!-- config and site -->
+    <fileSet filtered="false" packaged="false" encoding="UTF-8">
+      <directory>config/</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="false" packaged="false" encoding="UTF-8">
+      <directory>src/site</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+
+    <!-- mvnw -->
+    <fileSet filtered="false" packaged="false" encoding="UTF-8">
+      <!-- empty tag for root directory -->
+      <directory />
+      <includes>
+        <include>mvnw</include>
+        <include>mvnw.cmd</include>
+      </includes>
+      <fileMode>0755</fileMode>
+      <directoryMode>0755</directoryMode>
+    </fileSet>
+    <fileSet filtered="false" packaged="false" encoding="UTF-8">
+      <directory>.mvn/</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <!-- README and LICENSE -->
+    <fileSet filtered="false" packaged="false" encoding="UTF-8">
+      <!-- empty tag for root directory -->
+      <directory />
+      <includes>
+        <include>README.md</include>
+        <include>LICENSE.txt</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+  <!-- sub modules -->
+  <modules>
+    <!-- library module -->
+    <module id="${rootArtifactId}-lib"
+      dir="__rootArtifactId__-lib" name="${rootArtifactId}-lib">
+      <fileSets>
+        <fileSet filtered="true" packaged="false">
+          <directory />
+          <includes>
+            <include>pom.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+          <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+          <directory>src/test/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+          <directory>src/site</directory>
+        </fileSet>
+      </fileSets>
+    </module>
+
+    <!-- example application module -->
+    <module id="${rootArtifactId}-example"
+      dir="__rootArtifactId__-example" name="${rootArtifactId}-example">
+      <fileSets>
+        <fileSet filtered="true" packaged="false">
+          <directory />
+          <includes>
+            <include>pom.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+          <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+          <directory>src/test/java</directory>
+        </fileSet>
+      </fileSets>
+    </module>
+
+    <!-- distribution module -->
+    <module id="${rootArtifactId}-dist"
+      dir="__rootArtifactId__-dist" name="${rootArtifactId}-dist">
+      <fileSets>
+        <fileSet filtered="true" packaged="false">
+          <directory />
+          <includes>
+            <include>pom.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="false">
+          <directory>src/assembly</directory>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
+
+</archetype-descriptor>
