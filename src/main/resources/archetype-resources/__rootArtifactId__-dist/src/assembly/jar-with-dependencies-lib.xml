@@ -17,7 +17,7 @@
       <useAllReactorProjects>true</useAllReactorProjects>
       <includes>
         <include>${groupId}:${rootArtifactId}-lib</include>
-        <include>${groupId}:${rootArtifactId}-app</include>
+        <include>${groupId}:${rootArtifactId}-example</include>
       </includes>
       <binaries>
         <outputDirectory>modules/maven-assembly-plugin</outputDirectory>
