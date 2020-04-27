@@ -6,12 +6,13 @@
   name="multi-module-project-base-maven-archetype">
 
   <requiredProperties>
-    <requiredProperty key="groupId">
-      <defaultValue>${groupId}</defaultValue>
-    </requiredProperty>
+    <requiredProperty key="groupId" />
+    <!--
     <requiredProperty key="package">
       <defaultValue>${groupId.replaceAll("-", "_")}</defaultValue>
     </requiredProperty>
+    -->
+    <requiredProperty key="package" />
     <requiredProperty key="developerName" />
     <requiredProperty key="developerEmail" />
     <requiredProperty key="developerUrl" />

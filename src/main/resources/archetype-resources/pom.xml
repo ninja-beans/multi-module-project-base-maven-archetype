@@ -25,17 +25,17 @@
 
   <developers>
     <developer>
-      <name>${symbol_dollar}{developerName}</name>
-      <email>${symbol_dollar}{developerEmail}</email>
-      <url>${symbol_dollar}{developerUrl}</url>
+      <name>${developerName}</name>
+      <email>${developerEmail}</email>
+      <url>${developerUrl}</url>
     </developer>
   </developers>
 
   <scm>
-    <connection>${symbol_dollar}{scmConnection}</connection>
-    <developerConnection>${symbol_dollar}{scmConnection}</developerConnection>
-    <url>${symbol_dollar}{scmUrl}</url>
-    <tag>${symbol_dollar}{scmTag}</tag>
+    <connection>${scmConnection}</connection>
+    <developerConnection>${scmConnection}</developerConnection>
+    <url>${scmUrl}</url>
+    <tag>${scmTag}</tag>
   </scm>
 
   <profiles>
